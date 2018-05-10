@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html><head>
+	<title>2DoList</title>
+
+	<link rel="stylesheet" type="text/css" href="files/css/bootstrap.min.css" >
+	<script src="files/jquery/jquery-1.12.3.min.js"></script>
+  	<script src="files/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" type="text/css" href="files/css/modifications2.css">
+	<script src="files/js/script.js"></script>
+	<!-- For the datepicker -->
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<script src="files/jquery/jquery-1.12.3.js"></script>
+    <script src="files/jquery/jquery-ui.js"></script>
+	<script src="files/jquery/jquery.tablesorter.js"></script>
+</head>
+
+<body class="modal-open" style="padding-right: 17px;" >
+<form action="http://localhost:8081/saveAction" method="post" >
+<div class="container-fluid ">
+
+	<div class="row title"> <!-- used for the title of the page-->
+		<div class="col-md- title">
+		<p id="title">ToDo List</p>
+		</div>
+		</div>
+
+	<div class="row ">
+
+		<div class="col-md-2 tabs sections"><!--
+		 tabs section-->
+
+			<div class="buttons">
+
+				<button type="submit" class="btn btn-primary button " onclick="allTasks();saveHTML()">All Tasks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="badge numbers" id="allNo">0</div></button>
+				<button type="submit" class="btn btn-primary button" onclick="inProgressTasks();saveHTML()">In Progress&nbsp;&nbsp;&nbsp;<div class="badge numbers" id="inNo" >0</div></button>
+				<button type="submit" class="btn btn-primary button" onclick="completedTasks();saveHTML()">Completed &nbsp;&nbsp;&nbsp;<div class="badge numbers" id="compNo">0</div></button>
+				<button type="submit" class="btn btn-primary button" onclick="archivedTasks();saveHTML()">Archived&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="badge numbers" id="arcNo">0</div> </button>
+
+			</div>
+
+		</div> 
+	
+		<div class="col-md-10 lists sections"><!-- preview tasks part-->
+			<div ><!--tasklist name-->
+				<p style="display: inline-block; margin-right:10px; width: 90% "id="taskListName">All Tasks</p>
+			</div>
+
+    		<!-- action button--> 
+    		<!--FOR All TASKS and INPROGRESS-->
+    		<div id="col4">
+				 <div style="display: inline-block;" class="dropdown" id="actionButton">
+					<button class="btn btn-primary dropdown-toggle actionButton" type="submit" data-toggle="dropdown" id="actionButton">:::
+							<span class="caret dropDown" ></span></button>
+								<ul class="dropdown-menu dropDown" id="dropDown">
+							  		<li><a href="#" onclick="saveArchive();saveHTML()">Archive</a></li>
+							 		<li><a href="#" onclick="editTask();saveHTML()">Edit</a></li>
+							 		<li><a href="#"   data-toggle="modal" data-target="#DeleteModal">Delete</a></li>
+							 		<li><a href="#" onclick="saveCompleted();saveHTML()">Mark as Done</a></li>
+							  	</ul>
+							  	</div>
+							  	</div>
+    		
+    		<!--FOR Archived TASKS-->
+    		<div id="Arc-col4">
+				 <div style="display: inline-block;" class="dropdown" id="actionButton2">
+					<button class="btn btn-primary dropdown-toggle actionButton" type="submit" data-toggle="dropdown" id="actionButton2">::
+							<span class="caret dropDown" ></span></button>
+								<ul class="dropdown-menu dropDown" id="dropDown">
+							 		<li><a href="#" onclick="editTask();saveHTML()">Edit</a></li>
+							 		<li><a href="#" data-toggle="modal" data-target="#DeleteModal">Delete</a></li>
+							  	</ul>
+							  	</div>
+							  	</div>
+
+    		<!--FOR completed TASKS-->
+    		<div id="comp-col4">
+				 <div style="display: inline-block;" class="dropdown" id="actionButton3">
+					<button class="btn btn-primary dropdown-toggle actionButton" type="submit" data-toggle="dropdown" id="actionButton3">::
+							<span class="caret dropDown" ></span></button>
+								<ul class="dropdown-menu dropDown" id="dropDown">
+									<li><a href="#" onclick="saveArchive();saveHTML()">Archive</a></li>
+							 		<li><a href="#" onclick="editTask();saveHTML()">Edit</a></li>
+							 		<li><a href="#" data-toggle="modal" data-target="#DeleteModal">Delete</a></li>
+							  	</ul>
+							  	</div>
+							  	</div>
+
+
+
+
+			<!--Table-->
+
+			<table class="table AllTasks" id="AllTasks" style="table-layout: fixed;">
+  				<thead class="thead-inverse">
+    				 <!--Title of the table-->
+    							<tr>
+    								<th style="width:5% "></th>
+					    			<th class="tableTitle" style="width: 50%">Task Name<span class="headerSortDown"></th>
+					    			<th class="tableTitle" style="width: 40%">Due Date<span class="headerSortDown"></th>
+					    			<th style="width: 10%"> 
+							    							    				
+					    			</th>
+    							</tr>
+
+    			</thead>
+				<tbody>
+				</tbody>
+    		</table>
+			<table class="table Inprogress" id="InProgress" style="table-layout: fixed;">
+  				<thead class="thead-inverse">
+    				 <!--Title of the table-->
+    							<tr>
+    								<th style="width:5% "></th>
+					    			<th class="tableTitle" style="width: 50%">Task Name</th>
+					    			<th class="tableTitle" style="width: 40%">Due Date</th>
+					    			<th style="width: 10%"> 
+							    							    				
+					    			</th>
+    							</tr>
+  							
+    							 
+    			</thead>
+				<tbody>
+				</tbody>
+    		</table>
+    		</table>
+    		<table class="table Completed" id="Completed" style="table-layout: fixed;">
+  				<thead class="thead-inverse">
+    				 <!--Title of the table-->
+    							<tr>
+    								<th style="width:5% "></th>
+					    			<th class="tableTitle" style="width: 50%">Task Name</th>
+					    			<th class="tableTitle" style="width: 40%">Due Date</th>
+					    			<th style="width: 10%"> 
+							    							    				
+					    			</th>
+    							</tr>
+
+    							 
+    			</thead>
+				<tbody>
+				</tbody>
+    		</table>
+    		</table>
+    		<table class="table Archived" id="Archived" style="table-layout: fixed;">
+  				<thead class="thead-inverse">
+    				 <!--Title of the table-->
+   							<tr>
+    								<th style="width:5% "></th>
+					    			<th class="tableTitle" style="width: 50%">Task Name</th>
+					    			<th class="tableTitle" style="width: 40%">Due Date</th>
+					    			<th style="width: 10%"> 
+							    							    				
+					    			</th>
+    							</tr>
+
+    			</thead>
+				<tbody>
+				</tbody>
+    		</table>
+
+
+
+
+
+    		<br><br>  
+
+
+
+			<!-- THE DIALOGUE BOX-->
+			<div class="container">
+	  		<!-- Trigger the modal with a button -->
+	  			<button type="submit" class="btn btn-info btn-lg buttonAdd" data-toggle="modal" data-target="#myModal" id="addButton" onclick="ClearFields();saveHTML()">+ Add New Task</button>
+
+	  			<button type="submit" class="btn  btn-lg delete" id="deleteButton" data-toggle="modal" data-target="#DeleteALlModal">Delete All</button>
+	  			<!-- Modal Delete All -->
+	  			<div class="modal fade" id="DeleteALlModal" role="dialog">
+	    			<div class="modal-dialog">
+	   			  	<!-- Modal content-->
+	      				<div class="modal-content">
+		        				<div class="modal-header">
+							        <button type="submit" class="close" data-dismiss="modal">&times;</button>
+							    </div>
+							    <div class="modal-body">
+							    	<p>Are you sure you want to delete all tasks selected?</p>
+							    	<button type="submit" class="btn btn-default"  onclick="deleteAll();saveHTML()" data-dismiss="modal">Yes</button>
+							    	<button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							    </div>
+						</div>
+					</div>
+				</div>
+
+	  			<!-- Modal Delete only one -->
+	  			<div class="modal fade" id="DeleteModal" role="dialog">
+	    			<div class="modal-dialog">
+	   			  	<!-- Modal content-->
+	      				<div class="modal-content">
+		        				<div class="modal-header">
+							        <button type="submit" class="close" data-dismiss="modal">&times;</button>
+							    </div>
+							    <div class="modal-body">
+							    	<p>Are you sure you want to delete task selected?</p>
+							    	<button type="submit" class="btn btn-default"  onclick="deleteOneTask();saveHTML()" data-dismiss="modal">Yes</button>
+							    	<button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							    </div>
+						</div>
+					</div>
+				</div>
+
+
+	  		<!-- Modal ADD -->
+	  			<div class="modal fade" id="myModal" role="dialog">
+	    			<div class="modal-dialog">
+	    
+	   			   <!-- Modal content-->
+	      				<div class="modal-content">
+		        				<div class="modal-header">
+							        <button type="submit" class="close" data-dismiss="modal">&times;</button>
+							        <h4 class="modal-title">Add Task</h4>
+		       					</div>
+		        			<div class="modal-body">
+		    					<!--<form class="theForm" id="addTask">-->
+							    <h1 class="formTitles"> Name(Required): </h1>
+							    <input class="formInput" type="text" name="TaskName" id="taskName"/>
+							    <h1 class="formTitles"> Date(Optional): </h1>
+							    <input class="formInput" type="text" id="datepicker" name="TaskDueDate" id="taskDate" />
+							    <h1 class="formTitles"> Description(Optional): </h1>
+							    <textarea class="formInput description" type="input" name="TaskDescription" id="description"></textarea>
+							    <!--</form>-->
+							</div>
+							<div class="modal-footer">
+		        				<input type="submit" class="btn btn-default" id="save" value="Add Task" onclick="validateInput();saveHTML()" />
+		          				<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+		        			
+	     		 		</div>
+	      
+	    			</div>
+	  			</div>
+				<!-- Modal EDIT -->
+	  			<div class="modal" id="editModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="submit" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title">Edit Task</h4>
+							</div>
+							<div class="modal-body">
+							<!--<form class="theForm" id="addTask">-->
+							    <h1 class="formTitles"> Name(Required): </h1>
+							    <input class="formInput" type="text" name="TaskName1" id="taskName1"/>
+							    <h1 class="formTitles"> Date(Optional): </h1>
+							    <input class="formInput" type="text" id="datepicker1" name="TaskDueDate1" id="taskDate1" />
+							    <h1 class="formTitles"> Description(Optional): </h1>
+							    <textarea class="formInput description" type="input" name="TaskDescription1" id="description1"></textarea>
+						    <!--</form>-->
+							</div>
+							<div class="modal-footer">
+							<button type="submit" class="btn btn-default" data-dismiss="modal" onclick="cancelEditModal();saveHTML()">Cancel</button>
+							<button type="submit" class="btn btn-primary" onclick="saveEdit();saveHTML()">Save Task</button>
+							</div>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+</div>
+</div>
+<input type="text" id="dummy" name="dummy"></input>
+</form>
+</body>
+</html>
