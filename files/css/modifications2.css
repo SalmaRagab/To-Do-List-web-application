@@ -1,0 +1,189 @@
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+.title{
+	background-color:#092fab;
+	/*background-color:#606A8B;*/
+	height:10vh;
+}
+.sections{
+	height: 100vh;
+	border-top: solid;
+	border-top-color:#96A5D9;
+
+}
+
+.tabs{
+
+	background-color:#EDEFFA;
+	border-right: groove 1px #E7E3FC;
+}
+
+.lists{
+	height: 100vh;
+	background-color:#F2F3FA;
+}
+#title{
+	
+position: absolute;
+	
+width: 100%;
+	
+left: 14px; /*newly added*/
+	
+top: 5px;/*newly added*/
+	
+color: #e3e3e3;
+	
+font-family: "Gabriola";
+
+font-style: bold;
+	
+font-size: 45px;
+}
+.button{
+	font-size: 15px;
+	border-radius: 20px;
+	border-color: #D2DCFF;
+	/* border:none; */
+	padding: 5px;
+	margin: 5px;
+	padding-left: 30px;
+	color:#666666;
+	text-align: center;
+	background-color:#F5F5FF;
+	width: 90%;
+	/*width: 100px ;*/
+}
+
+
+.buttons{
+	text-align: center;
+	margin-top: 50%;
+}
+.button:hover{
+	background-color:#F5F5FF;
+	color:#666666;
+
+}
+
+
+#taskListName{
+	margin: 5px;
+	font-size: 35px;
+	color: black;
+	font-family: Berlin Sans FB;
+	/* font-weight: bold; */
+}
+.buttonAdd{
+	font-size: 14px;
+	border-radius: 5px;
+	border-color: #A5B2F3;
+	border-style: dashed;
+	/* border:none; */
+	padding: 5px;
+	margin: 5px;
+	/* padding-left: 0px; */
+	color: #092fab;
+	text-align: start;
+	background-color: rgb(243, 247, 255);
+	width: %;
+	font-family: cursive;
+	/* font-size: larger; */
+	font-style: normal;
+	font-weight: bolder;
+}
+
+.buttonAdd:hover{
+	background-color:#F5F5FF;
+	color:#666666;
+
+}
+
+.formTitles{
+	font-size: 15px;
+	margin: 4px;
+}
+.formInput{
+	
+color: #070CC1;
+	
+font-family: cursive;
+	
+border-style: hidden;
+	
+border-color: black;
+	
+border-radius: 20px;
+	
+padding: 5px;
+	
+width: 80%;
+	
+margin: 2px;
+}
+.description{
+	height: 90px;
+	text-align: left;
+	padding-top: 0.5px;
+	padding-bottom: 60px;
+	resize: none;
+}
+
+.tableTitle{
+	color: #092fab;
+}
+#deleteButton{
+		font-size: 15px;
+		border-radius: 5px;
+		border-color: #A5B2F3;
+		border-style: double;
+		/* border:none; */
+		padding: 5px;
+		margin: 5px;
+		/* padding-left: 0px; */
+		color: #232B84;
+		text-align: start;
+		background-color: rgb(243, 247, 255);
+		width: %;
+		font-family: cursive;
+		/* font-size: larger; */
+		font-style: normal;
+		font-weight: bolder;
+}
+
+.actionButton{
+	font-size: 15px;
+	color: black;
+	font-weight: 700;
+	background-color: #F2F3FA;
+	border-color: #F2F3FA;
+	padding: 0;
+	margin: 0;
+}
+.hover {
+    background-color:#EBEBEB;
+}
+
+.headerSortDown:after{
+  content: ' ';
+  position: relative;
+  left: 7px;
+  border: 5px solid transparent;
+}
+.headerSortDown:after{
+  top: 15px;
+  border-top-color: black;
+}
+.headerSortDown{
+  padding-right: 80px;
+}
+.div-to-display {
+    display: inline-block;
+    width: 100%;
+}
